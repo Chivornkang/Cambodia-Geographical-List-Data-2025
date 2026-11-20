@@ -177,9 +177,15 @@ def copy_address():
     root.update()
 
 def clear_all():
-    clear_levels("Province")
-    comboboxes["Province"].set("")
-    address_box.delete("1.0", "end")
+    selected.clear()
+    options.clear()
+
+    for level in levels:
+        comboboxes[level].set("")
+        comboboxes[level]["values"] = ()
+
+    load_level("Province", data)
+    update_address()
 
 def update_language(*args):
     lang = translations[language.get()]
